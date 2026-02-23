@@ -1,0 +1,178 @@
+/* ==========================================================================
+   CareSync Enterprise - Global Stylesheet
+   ========================================================================== */
+
+/* ---------- Base Typography & Scrollbar ---------- */
+body { 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    background-color: #f8fafc; 
+}
+
+::-webkit-scrollbar { 
+    width: 6px; 
+    height: 6px; 
+}
+::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb { 
+    background: #cbd5e1; 
+    border-radius: 10px; 
+}
+::-webkit-scrollbar-thumb:hover { 
+    background: #94a3b8; 
+}
+
+/* ---------- Brand Colors ---------- */
+.text-brand {
+    color: #059669;
+}
+
+.bg-brand {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+/* ---------- Glassmorphism Cards & Headers ---------- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.glass-header { 
+    background: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(10px); 
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
+}
+
+/* ---------- Form Inputs (Standard / Dashboard) ---------- */
+.form-input {
+    width: 100%; 
+    padding: 0.75rem 1rem; 
+    border-radius: 0.75rem; 
+    border: 1.5px solid #e2e8f0;
+    background-color: #f8fafc; 
+    color: #0f172a; 
+    font-size: 0.875rem; 
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+.form-input:focus { 
+    outline: none; 
+    border-color: #10b981; 
+    background-color: #ffffff; 
+    box-shadow: 0 0 0 4px rgba(16,185,129,0.1); 
+}
+.form-label { 
+    display: block; 
+    font-size: 0.875rem; 
+    font-weight: 700; 
+    color: #475569; 
+    margin-bottom: 0.5rem; 
+}
+
+/* ---------- Form Inputs (Floating Labels / Auth) ---------- */
+input::-ms-reveal, 
+input::-ms-clear { 
+    display: none !important; 
+}
+
+.floating-label { 
+    transform-origin: left top; 
+    pointer-events: none; 
+}
+.floating-input:placeholder-shown + .floating-label { 
+    top: 50%; 
+    transform: translateY(-50%) scale(1); 
+    color: #94a3b8; 
+}
+.floating-input:not(:placeholder-shown) + .floating-label, 
+.floating-input:focus + .floating-label { 
+    top: 6px; 
+    transform: translateY(0) scale(0.75); 
+    color: #059669; 
+    font-weight: 700; 
+}
+
+/* ---------- Button Shine Effect ---------- */
+.btn-shine::after { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: -100%; 
+    width: 50%; 
+    height: 100%; 
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); 
+    transform: skewX(-20deg); 
+    transition: all 0.7s ease; 
+}
+.btn-shine:hover::after { 
+    left: 200%; 
+}
+
+/* ---------- Background Animations ---------- */
+/* Cinematic Panning */
+@keyframes panImage { 
+    0% { transform: scale(1.05) translate(0, 0); } 
+    50% { transform: scale(1.15) translate(-2%, 2%); } 
+    100% { transform: scale(1.05) translate(0, 0); } 
+}
+.animate-pan { animation: panImage 40s ease-in-out infinite; }
+
+/* Ambient Moving Blobs */
+@keyframes blob { 
+    0% { transform: translate(0px, 0px) scale(1); } 
+    33% { transform: translate(60px, -60px) scale(1.15); } 
+    66% { transform: translate(-40px, 40px) scale(0.85); } 
+    100% { transform: translate(0px, 0px) scale(1); } 
+}
+
+.animate-blob {
+    animation: blob 7s infinite alternate ease-in-out;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+/* Parallax Blob (For Access Denied Page) */
+.parallax-blob {
+    transition: transform 0.15s ease-out;
+}
+
+/* ---------- Interactive Animations ---------- */
+/* Shaking Icon (For Access Denied Page) */
+.hover-shake:hover { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0) rotate(-2deg); }
+    20%, 80% { transform: translate3d(2px, 0, 0) rotate(2deg); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0) rotate(-4deg); }
+    40%, 60% { transform: translate3d(4px, 0, 0) rotate(4deg); }
+}
+
+/* Staggered Entrance Animations (Used across all pages) */
+@keyframes slideUpFade { 
+    to { opacity: 1; transform: translateY(0); } 
+}
+.stagger-1 {
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.stagger-2 {
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.stagger-3 {
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    opacity: 0;
+    transform: translateY(15px);
+}
