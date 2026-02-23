@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Medicine - CareSync Enterprise</title>
+    <link rel="icon" type="image/x-icon" href="assets/imgs/logo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="../assets/js/alpine.min.js"></script>
+    
+    <link rel="stylesheet" href="../assets/css/flatpickr.min.css">
+    <script src="../assets/js/flatpickr.min.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+</head>
+<body x-data="{ sidebarOpen: false }" class="text-slate-800 overflow-x-hidden bg-slate-50">
+
+    <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm lg:hidden" @click="sidebarOpen = false"></div>
+
+    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-slate-200 transition-transform duration-300 lg:translate-x-0 flex flex-col shadow-2xl lg:shadow-none">
+        
+        <div class="h-20 flex items-center px-8 border-b border-slate-100">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center shadow-sm border border-emerald-100">
+                    <img src="../assets/imgs/logo.jpg" alt="Logo" class="w-6 h-6 object-contain" onerror="this.outerHTML='<svg class=\'w-6 h-6 text-emerald-600\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2.5\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' d=\'M12 6v6m0 0v6m0-6h6m-6 0H6\'></path></svg>'">
+                </div>
+                <span class="font-extrabold text-2xl text-slate-800 tracking-tight">CareSync<span class="text-emerald-500">.</span></span>
+            </div>
+            <button @click="sidebarOpen = false" class="ml-auto lg:hidden text-slate-400 hover:text-slate-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <p class="px-4 text-xs font-bold tracking-wider text-slate-400 uppercase mb-4">Main Menu</p>
+            
+            <a href="../dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                Dashboard
+            </a>
+            
+            <a href="../patients/index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                Patient Directory
+            </a>
+
+            <a href="../consultations/index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                Consultations
+            </a>
+
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-50 text-emerald-700 font-bold transition-colors relative group">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-8 bg-emerald-500 rounded-r-full"></div>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                Pharmacy Inventory
+            </a>
+
+            <a href="../reports/index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                FHSIS Reports
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors">
+                <div class="w-9 h-9 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold text-sm">MS</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-bold text-slate-900 truncate">Midwife Sarah</p>
+                    <p class="text-xs text-slate-500 truncate">Administrator</p>
+                </div>
+                <a href="../login.html" class="text-slate-400 hover:text-red-500 transition-colors" title="Logout">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="lg:pl-72 flex flex-col min-h-screen">
+        
+        <header class="h-20 glass-card sticky top-0 z-30 flex items-center justify-between px-6 lg:px-10">
+            <div class="flex items-center gap-4">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-slate-50 text-slate-600 hover:bg-slate-100 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+                </button>
+                
+                <div class="hidden md:flex items-center relative">
+                    <svg class="w-5 h-5 absolute left-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" placeholder="Search inventory..." class="pl-10 pr-4 py-2 w-72 bg-slate-50 border border-slate-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all">
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 text-slate-400 hover:text-emerald-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 p-6 lg:p-10 max-w-4xl mx-auto w-full">
+            
+            <div class="mb-8 stagger-1">
+                <a href="index.html" class="inline-flex items-center text-sm font-bold text-slate-400 hover:text-emerald-600 transition-colors mb-4">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Back to Inventory
+                </a>
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Add Medicine</h1>
+                <p class="text-slate-500 mt-1 font-medium">Record a new medicine or medical supply to the inventory.</p>
+            </div>
+
+            <form action="index.html" method="POST" class="space-y-6 stagger-2">
+                
+                <div class="bg-white rounded-[1.5rem] shadow-sm border border-slate-200 p-6 sm:p-8 relative z-30">
+                    <h2 class="text-lg font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center">1</span>
+                        Item Identification
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-2">Item Name (Brand)</label>
+                            <input type="text" name="item_name" class="w-full px-4 py-3 rounded-xl border-[1.5px] border-slate-200 bg-slate-50 text-slate-900 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition-colors" placeholder="e.g. Biogesic" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-2">Generic Name</label>
+                            <input type="text" name="generic_name" class="w-full px-4 py-3 rounded-xl border-[1.5px] border-slate-200 bg-slate-50 text-slate-900 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition-colors" placeholder="e.g. Paracetamol 500mg" required>
+                        </div>
+                        
+                        <div x-data="{ 
+                            open: false, selected: '', label: 'Select Category...',
+                            options: [
+                                { val: 'Antibiotics', text: 'Antibiotics' },
+                                { val: 'PainRelief', text: 'Pain Relief' },
+                                { val: 'Vitamins', text: 'Vitamins & Supplements' },
+                                { val: 'FirstAid', text: 'First Aid & Wound Care' },
+                                { val: 'Others', text: 'Others' }
+                            ]
+                        }" class="relative w-full md:col-span-2">
+                            <label class="block text-sm font-bold text-slate-600 mb-2">Category</label>
+                            <input type="hidden" name="category" :value="selected" required>
+                            
+                            <button type="button" @click="open = !open" @click.outside="open = false" 
+                                class="w-full px-4 py-3 rounded-xl border-[1.5px] border-slate-200 bg-slate-50 text-slate-900 font-medium focus:outline-none focus:border-emerald-500 transition-colors text-left flex justify-between items-center h-[46px]"
+                                :class="open ? 'ring-4 ring-emerald-500/20 border-emerald-500 bg-white' : ''">
+                                <span x-text="label" :class="selected === '' ? 'text-slate-400' : 'text-slate-900'"></span>
+                                <svg class="w-5 h-5 transition-transform duration-300" :class="open ? 'rotate-180 text-emerald-500' : 'text-slate-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+
+                            <div x-show="open" 
+                                x-transition
+                                class="alpine-dropdown-menu absolute left-0 right-0 mt-2 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-[1rem] shadow-2xl overflow-hidden" style="display: none;">
+                                <ul class="py-2">
+                                    <template x-for="option in options" :key="option.val">
+                                        <li @click="selected = option.val; label = option.text; open = false"
+                                            class="px-5 py-3 text-sm cursor-pointer transition-colors flex items-center justify-between"
+                                            :class="selected === option.val ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'">
+                                            <span x-text="option.text"></span>
+                                            <svg x-show="selected === option.val" class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[1.5rem] shadow-sm border border-slate-200 p-6 sm:p-8 relative z-20">
+                    <h2 class="text-lg font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">2</span>
+                        Stock Details
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-2">Initial Quantity</label>
+                            <input type="number" name="quantity" class="w-full px-4 py-3 rounded-xl border-[1.5px] border-slate-200 bg-slate-50 text-slate-900 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition-colors" placeholder="e.g. 500" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-2">Reorder Alert Level</label>
+                            <input type="number" name="reorder_level" class="w-full px-4 py-3 rounded-xl border-[1.5px] border-slate-200 bg-slate-50 text-slate-900 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition-colors" placeholder="Alert me when stock falls below..." required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-2">Batch Number</label>
+                            <input type="text" name="batch_no" class="w-full px-4 py-3 rounded-xl border-[1.5px] border-slate-200 bg-slate-50 text-slate-900 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition-colors" placeholder="e.g. B-9982" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-2">Expiry Date</label>
+                            <div class="relative">
+                                <input type="text" name="expiry_date" id="expiry-date-picker" class="w-full pl-11 pr-4 py-3 rounded-xl border-[1.5px] border-slate-200 bg-white text-slate-900 font-medium focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 transition-all cursor-pointer" placeholder="Select Expiry Date" required readonly>
+                                <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-emerald-500 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end gap-4 pt-4 pb-10">
+                    <a href="index.html" class="px-6 py-3 rounded-xl font-bold text-slate-600 hover:bg-slate-100 transition-colors">Cancel</a>
+                    <button type="submit" class="px-8 py-3 rounded-xl font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all">
+                        Save to Inventory
+                    </button>
+                </div>
+
+            </form>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
